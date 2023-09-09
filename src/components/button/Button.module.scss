@@ -1,0 +1,24 @@
+.button {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  &.danger {
+    font-weight: bold;
+    color: #e54d2e;
+    padding: 0.3rem 1.2rem;
+    background-color: #fff0ee;
+    &:hover {
+      background-color: #fcdbd6;
+    }
+  }
+  &.transparent {
+    background-color: transparent;
+    border: 0.1rem solid #f4f2f4;
+    border-radius: 0.8rem;
+    &:hover {
+      box-shadow: 0 0 2rem 0.5rem rgba(0, 0, 0, 0.05);
+    }
+  }
+}

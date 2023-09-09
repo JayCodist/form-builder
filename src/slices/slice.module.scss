@@ -1,0 +1,24 @@
+.slice-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  .slice-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .slice-form-wrapper {
+    border: 0.1rem solid #e9e9e9;
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    .slice-input {
+      width: 100%;
+      margin: 0.5rem 0;
+      &[type="color"] {
+        width: 4rem;
+      }
+    }
+  }
+}

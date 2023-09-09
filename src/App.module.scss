@@ -1,0 +1,44 @@
+.main {
+  padding: 4rem 6vw;
+  display: flex;
+  flex-direction: column;
+  .available-title {
+    margin: 3rem 0 0.5rem;
+  }
+  .available {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 0.1rem solid #f4f2f4;
+    padding: 1.5vw;
+    border-radius: 0.8rem;
+    margin-bottom: 3rem;
+    .slice-option {
+      width: 26vw;
+      height: 16rem;
+      margin: 0.5vw;
+      opacity: 0.5;
+      padding: 2vw;
+      padding-bottom: 1vw;
+      transition: 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @media (max-width: 768px) {
+        height: 7rem;
+      }
+      &:hover {
+        opacity: 1;
+      }
+      .icon-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.4rem;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
+}
