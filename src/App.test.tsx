@@ -43,8 +43,10 @@ describe("App", () => {
 
     const removeSliceButton = screen.getByTestId("remove-slice");
     fireEvent.click(removeSliceButton);
+    // The remove button should no longer exist
     expect(removeSliceButton).not.toBeInTheDocument();
 
+    // The number of slices should have decremented
     const newNumberOfExistingSlices = screen.queryAllByTestId("slice").length;
     expect(newNumberOfExistingSlices).toBe(numberOfExistingSlices - 1);
   });
