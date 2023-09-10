@@ -91,6 +91,7 @@ function App() {
             onClick={() => addNewSlice(sliceOption)}
             key={i}
             className={styles["slice-option"]}
+            dataTestId="slice-option"
           >
             <div
               style={{

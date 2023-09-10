@@ -22,8 +22,6 @@ const Input: FunctionComponent<InputProps> = ({
   const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
     const newValue = e.target.value;
     if (type === "number") {
-      // newValue = newValue.replace(/[^\d-.]/g, "");
-
       setErrMessage(
         isValidNumberString(newValue) ? "" : "Please enter valid number"
       );

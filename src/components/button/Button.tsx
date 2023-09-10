@@ -6,18 +6,21 @@ interface ButtonProps {
   type?: "danger" | "transparent";
   children: ReactNode;
   className?: string;
+  dataTestId?: string;
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
   onClick,
   type = "transparent",
   children,
-  className
+  className,
+  dataTestId
 }) => {
   return (
     <button
       onClick={onClick}
       className={[styles.button, styles[type], className].join(" ")}
+      data-testid={dataTestId}
     >
       {children}
     </button>

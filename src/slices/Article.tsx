@@ -21,12 +21,19 @@ const Article: FunctionComponent<SliceComponentProps> = memo(
     };
 
     return (
-      <div className={[styles["slice-wrapper"], className].join(" ")}>
+      <div
+        className={[styles["slice-wrapper"], className].join(" ")}
+        data-testid="slice"
+      >
         <div className={styles["slice-header"]}>
-          <strong>
+          <strong data-testid="sliceTitle">
             Article slice • <RenderCounter />
           </strong>
-          <Button type="danger" onClick={() => onRemove(sliceID)}>
+          <Button
+            type="danger"
+            onClick={() => onRemove(sliceID)}
+            dataTestId="remove-slice"
+          >
             Remove slice
           </Button>
         </div>
