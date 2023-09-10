@@ -6,6 +6,9 @@ interface InputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  /**
+   * Defaults to `text`
+   */
   type?: "number" | "text" | "color";
   className?: string;
 }
@@ -21,6 +24,7 @@ const Input: FunctionComponent<InputProps> = ({
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
     const newValue = e.target.value;
+    // Handles input validation for numbers
     if (type === "number") {
       setErrMessage(
         isValidNumberString(newValue) ? "" : "Please enter valid number"
@@ -35,10 +39,14 @@ const Input: FunctionComponent<InputProps> = ({
         onChange={handleChange}
         placeholder={placeholder}
         className={styles.input}
+        /**
+         * Ensures `type="number"` inputs default to "text" so as to get all onChange events
+         * and handle the validation directly
+         */
         type={type === "number" ? "text" : type}
         autoComplete="none"
       />
-      {<span className={styles["err-display"]}>{errMessage}</span>}
+      <span className={styles["err-display"]}>{errMessage}</span>
     </div>
   );
 };

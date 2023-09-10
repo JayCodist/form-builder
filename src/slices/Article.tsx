@@ -11,9 +11,11 @@ import { isValidHexColorString } from "../utils/helpers/validators";
 
 const Article: FunctionComponent<SliceComponentProps> = memo(
   ({ onChange, onRemove, className, sliceID, sliceData }) => {
+    // Handles form data change
     const handleChange = (key: keyof ArticleData, value: unknown) => {
       const newFormData = { ...sliceData, [key]: value as unknown };
       let shouldSync = true;
+      // Only save valid changes to DB, while updating state unconditionally
       if (key === "colorInput1" && value) {
         shouldSync = isValidHexColorString(value as string);
       }

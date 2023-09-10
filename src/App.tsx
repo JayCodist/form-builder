@@ -28,13 +28,14 @@ function App() {
     fetchSavedSlices();
   }, []);
 
+  // To retain access to the latest `activeSlices` in useCallback
   const slicesRef = useRef(activeSlices);
-
   useEffect(() => {
     slicesRef.current = activeSlices;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSlices]);
 
+  // useCallback to ensure function passed to slices doesn't change and cause a rerender
   const handleSliceChange = useCallback(
     (sliceID: string, newData: SliceDataType, shouldSync = true) => {
       const newSlices = slicesRef.current.map(slice =>
@@ -42,6 +43,7 @@ function App() {
       );
       setActiveSlices(newSlices);
 
+      // Sync to DB only when change is valid (indicated by the calling slice)
       if (shouldSync) {
         storeJSON({ key: getAppKey("slices"), data: newSlices });
       }
@@ -49,6 +51,7 @@ function App() {
     []
   );
 
+  // Remove slice using it's unique ID
   const handleSliceRemoval = useCallback((sliceID: string) => {
     const newSlices = slicesRef.current.filter(slice => slice.id !== sliceID);
     setActiveSlices(newSlices);
@@ -59,6 +62,7 @@ function App() {
   const addNewSlice = (sliceOption: SliceOption) => {
     const newSlice: Slice = {
       title: sliceOption.title,
+      // Generates "unique" IDs for individual slices
       id: uuidv4(),
       data: titleBlankDataMap[sliceOption.title]
     };

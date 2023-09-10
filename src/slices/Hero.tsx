@@ -10,6 +10,7 @@ import Button from "../components/button/Button";
 
 const Hero: FunctionComponent<SliceComponentProps> = memo(
   ({ onChange, onRemove, className, sliceID, sliceData }) => {
+    // Handles form data change
     const handleChange = (key: keyof HeroData, value: unknown) => {
       const newFormData = { ...sliceData, [key]: value as string };
       onChange(sliceID, newFormData);

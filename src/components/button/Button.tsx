@@ -3,7 +3,10 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps {
   onClick?: MouseEventHandler;
-  type?: "danger" | "transparent";
+  /**
+   * Defaults to `transparent` with minimal styling
+   */
+  type?: "transparent" | "danger";
   children: ReactNode;
   className?: string;
   dataTestId?: string;

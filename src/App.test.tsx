@@ -22,12 +22,14 @@ describe("App", () => {
   test("clicking on slice-option buttons adds slices", () => {
     render(<App />);
 
+    // Clicking first slice option should add a slice
     const sliceOption = screen.getAllByTestId("slice-option")[0];
     const numberOfExistingSlices = screen.queryAllByTestId("slice").length;
     fireEvent.click(sliceOption as HTMLElement);
     const newNumberOfExistingSlices = screen.getAllByTestId("slice").length;
     expect(newNumberOfExistingSlices).toBe(numberOfExistingSlices + 1);
 
+    // Clicking the option again should add another slice
     fireEvent.click(sliceOption as HTMLElement);
     const newerNumberOfExistingSlices = screen.getAllByTestId("slice").length;
     expect(newerNumberOfExistingSlices).toBe(newNumberOfExistingSlices + 1);
@@ -52,6 +54,7 @@ describe("App", () => {
     const [firstOption] = screen.getAllByTestId("slice-option");
     fireEvent.click(firstOption as HTMLElement);
     const firstSlice = screen.getAllByTestId("slice")[0];
+    // Find an input inside the first slice
     const firstInput = within(firstSlice as HTMLElement).getAllByRole(
       "textbox"
     )[0] as HTMLInputElement;
@@ -62,6 +65,7 @@ describe("App", () => {
   test("bad user input triggers error display and good input doesn't", async () => {
     render(<App />);
     const sliceOptions = screen.getAllByTestId("slice-option");
+    // Click all available slice options and try to find a number input
     sliceOptions.forEach(sliceOption =>
       fireEvent.click(sliceOption as HTMLElement)
     );
@@ -69,17 +73,18 @@ describe("App", () => {
       .getAllByRole("textbox")
       .find(input => input.getAttribute("placeholder") === "Number Input");
     if (numberInput) {
+      // Test failure case
       fireEvent.change(numberInput, { target: { value: "4." } });
       const errorDisplay = screen.queryAllByText(
         "Please enter valid number"
       )[0];
       expect(errorDisplay).toBeInTheDocument();
 
+      // Test success case
       fireEvent.change(numberInput, { target: { value: "04.560" } });
       const newErrorDisplay = screen.queryAllByText(
         "Please enter valid number"
       )[0];
-      console.log({ newErrorDisplay });
       expect(newErrorDisplay).toBeFalsy();
     }
   });

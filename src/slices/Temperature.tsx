@@ -11,9 +11,11 @@ import { isValidNumberString } from "../utils/helpers/validators";
 
 const Temperature: FunctionComponent<SliceComponentProps> = memo(
   ({ onChange, onRemove, className, sliceID, sliceData }) => {
+    // Handles form data change
     const handleChange = (key: keyof TemperatureData, value: unknown) => {
       const newFormData = { ...sliceData, [key]: value };
       let shouldSync = true;
+      // Only save valid changes to DB, while updating state unconditionally
       if (key === "numberInput1") {
         shouldSync = isValidNumberString(value as string);
       }
